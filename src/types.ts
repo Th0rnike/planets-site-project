@@ -1,3 +1,20 @@
+export interface colorProps {
+  colors: {
+    white: string;
+    backgroundBlue: string;
+    arsenic: string;
+    romanSilver: string;
+    moonstone: string;
+    indianYellow: string;
+    blueViolet: string;
+    cinnabar: string;
+    cgRed: string;
+    flame: string;
+    lightSeaGreen: string;
+    ultramarineBlue: string;
+  };
+}
+
 export interface planetProps {
   planetData: {
     name: string;
