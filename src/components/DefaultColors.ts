@@ -15,4 +15,8 @@ export const DefaultColors: colorProps = {
     lightSeaGreen: "#1ec2a4",
     ultramarineBlue: "#2d68f0",
   },
+  fonts: {
+    spartanFont: "'League Spartan', sans-serif",
+    antonioFont: "'Antonio', sans-serif",
+  },
 };

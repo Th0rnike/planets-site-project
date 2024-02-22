@@ -13,6 +13,10 @@ export interface colorProps {
     lightSeaGreen: string;
     ultramarineBlue: string;
   };
+  fonts: {
+    spartanFont: string;
+    antonioFont: string;
+  };
 }
 
 export interface planetProps {
