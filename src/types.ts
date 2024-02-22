@@ -13,6 +13,16 @@ export interface colorProps {
     lightSeaGreen: string;
     ultramarineBlue: string;
   };
+  planetIcons: {
+    mercuryIcon: string;
+    venusIcon: string;
+    earthIcon: string;
+    marsIcon: string;
+    jupiterIcon: string;
+    saturnIcon: string;
+    uranusIcon: string;
+    naptuneIcon: string;
+  };
   fonts: {
     spartanFont: string;
     antonioFont: string;

@@ -15,6 +15,16 @@ export const DefaultColors: colorProps = {
     lightSeaGreen: "#1ec2a4",
     ultramarineBlue: "#2d68f0",
   },
+  planetIcons: {
+    mercuryIcon: "#DEF4FC",
+    venusIcon: "#F7CC7F",
+    earthIcon: "#545BFE",
+    marsIcon: "#FF6A45",
+    jupiterIcon: "#ECAD7A",
+    saturnIcon: "#FCCB6B",
+    uranusIcon: "#65F0D5",
+    naptuneIcon: "#497EFA",
+  },
   fonts: {
     spartanFont: "'League Spartan', sans-serif",
     antonioFont: "'Antonio', sans-serif",
