@@ -3,13 +3,12 @@ import { planetProps } from "../types";
 import { useState } from "react";
 import styled from "styled-components";
 import backgroundStars from "../assets/background-stars.svg";
-import earth from "../assets/planet-earth.svg";
 
 const Planet = (props: planetProps) => {
+  const [activeTab, setActiveTab] = useState("overview");
+
   const { planetData } = props;
   const { planetName } = useParams();
-
-  const [activeTab, setActiveTab] = useState("overview");
 
   const planetInfo = planetData.find((p) => p.name === planetName);
 
@@ -25,22 +24,28 @@ const Planet = (props: planetProps) => {
     ? planetInfo.name[0].toLowerCase() + planetInfo.name.slice(1)
     : "";
 
-  const imageUrl = `../assets/planet-${imageName}.svg`;
+  const imageUrl = `/src/assets/planet-${imageName}.svg`;
 
   return (
     <div>
       <Navbar>
         <InfoLinks to={"#"} onClick={() => handleChange("overview")}>
-          overview
-          {activeTab === "overview" && <BottomLine />}
+          <Tab style={{ opacity: activeTab === "overview" ? 1 : 0.5 }}>
+            overview
+            {activeTab === "overview" && <BottomLine />}
+          </Tab>
         </InfoLinks>
         <InfoLinks to={"#"} onClick={() => handleChange("structure")}>
-          structure
-          {activeTab === "structure" && <BottomLine />}
+          <Tab style={{ opacity: activeTab === "structure" ? 1 : 0.5 }}>
+            structure
+            {activeTab === "structure" && <BottomLine />}
+          </Tab>
         </InfoLinks>
         <InfoLinks to={"#"} onClick={() => handleChange("surface")}>
-          surface
-          {activeTab === "surface" && <BottomLine />}
+          <Tab style={{ opacity: activeTab === "surface" ? 1 : 0.5 }}>
+            structure
+            {activeTab === "surface" && <BottomLine />}
+          </Tab>
         </InfoLinks>
       </Navbar>
       <HorizontalRule />
@@ -48,11 +53,9 @@ const Planet = (props: planetProps) => {
       <MobilePadding>
         {activeTab === "overview" && (
           <div className="overview">
-            <img
-              style={{ width: "100px", height: "100px" }}
-              src={imageUrl}
-              alt="planet image"
-            />
+            <ImageContainer>
+              <PlanetImage src={imageUrl} alt="planet image" />
+            </ImageContainer>
             <h1>{planetInfo.name}</h1>
             <p>{planetInfo.overview.content}</p>
             <p>{planetInfo.overview.source}</p>
@@ -60,6 +63,7 @@ const Planet = (props: planetProps) => {
         )}
         {activeTab === "structure" && (
           <div className="structure">
+            <PlanetImage src={imageUrl} alt="planet image" />
             <h1>{planetInfo.name}</h1>
             <p>{planetInfo.structure.content}</p>
             <p>{planetInfo.structure.source}</p>
@@ -67,6 +71,7 @@ const Planet = (props: planetProps) => {
         )}
         {activeTab === "surface" && (
           <div className="surface">
+            <PlanetImage src={imageUrl} alt="planet image" />
             <h1>{planetInfo.name}</h1>
             <p>{planetInfo.geology.content}</p>
             <p>{planetInfo.geology.source}</p>
@@ -111,15 +116,7 @@ const Navbar = styled.nav`
 `;
 
 const InfoLinks = styled(Link)`
-  color: white;
   text-decoration: none;
-  text-transform: uppercase;
-  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
-  font-size: 9px;
-  font-weight: 700;
-  line-height: 10px;
-  letter-spacing: 1.93px;
-  text-align: center;
 `;
 
 const HorizontalRule = styled.hr`
@@ -131,11 +128,34 @@ const HorizontalRule = styled.hr`
 `;
 
 const BottomLine = styled.hr`
-  border: 4px solid red;
+  border: 4px solid ${({ theme }) => theme.styles.pallete.moonstone};
   margin-top: 20px;
   border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 0px;
+`;
+
+const Tab = styled.h2`
+  color: white;
+  text-transform: uppercase;
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 10px;
+  letter-spacing: 1.93px;
+  text-align: center;
+`;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+const PlanetImage = styled.img`
+  width: calc(100% / 2.6); /* Set the width to be 38.46% of its original size */
+  height: auto; /* Maintain the aspect ratio of the image */
+  display: block;
+  margin: 0 auto;
 `;
 
 export default Planet;
