@@ -1,19 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 
-interface globalProps {
-  backgroundColor: string;
-  fontFamily: string;
-}
-
-const GlobalStyles = createGlobalStyle<globalProps>`
+const GlobalStyles = createGlobalStyle`
     *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
     body{
-        background-color: ${(props) => props.backgroundColor};
-        font-family: ${(props) => props.fontFamily};
+        background-color: ${({ theme }) => theme.styles.pallete.backgroundBlue};
+        font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
     }
 `;
 

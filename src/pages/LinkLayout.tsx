@@ -1,105 +1,126 @@
 import { Link, Outlet } from "react-router-dom";
 import planetData from "../data/data.json";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../components/GlobalStyles";
-import { DefaultColors } from "../components/DefaultColors";
 import { useState } from "react";
 import arrowIcon from "../assets/icon-chevron.svg";
+import { stylesProps } from "../types";
 
 const LinkLayout = () => {
   const [showMenu, setShowMenu] = useState(true);
-  const { colors, fonts, planetIcons } = DefaultColors;
+
+  interface planetColorsProps {
+    [key: string]: string;
+  }
+
+  const theme: stylesProps = {
+    styles: {
+      pallete: {
+        white: "#FFFFFF",
+        backgroundBlue: "#070724",
+        arsenic: "#38384F",
+        romanSilver: "#838391",
+        moonstone: "#419EBB",
+        indianYellow: "#EDA249",
+        blueViolet: "#6f2ed6",
+        cinnabar: "#D14C32",
+        cgRed: "#D83A34",
+        flame: "#CD5120",
+        lightSeaGreen: "#1ec2a4",
+        ultramarineBlue: "#2d68f0",
+      },
+      planetIcons: {
+        mercuryIcon: "#DEF4FC",
+        venusIcon: "#F7CC7F",
+        earthIcon: "#545BFE",
+        marsIcon: "#FF6A45",
+        jupiterIcon: "#ECAD7A",
+        saturnIcon: "#FCCB6B",
+        uranusIcon: "#65F0D5",
+        naptuneIcon: "#497EFA",
+      },
+      fonts: {
+        spartanFont: "'League Spartan', sans-serif",
+        antonioFont: "'Antonio', sans-serif",
+      },
+    },
+  };
+
+  const planetColors: planetColorsProps = {
+    Mercury: theme.styles.planetIcons.mercuryIcon,
+    Venus: theme.styles.planetIcons.venusIcon,
+    Earth: theme.styles.planetIcons.earthIcon,
+    Mars: theme.styles.planetIcons.marsIcon,
+    Jupiter: theme.styles.planetIcons.jupiterIcon,
+    Saturn: theme.styles.planetIcons.saturnIcon,
+    Uranus: theme.styles.planetIcons.uranusIcon,
+    Neptune: theme.styles.planetIcons.naptuneIcon,
+  };
 
   return (
-    <>
-      <GlobalStyles
-        fontFamily={fonts.spartanFont}
-        backgroundColor={colors.backgroundBlue}
-      />
-      <Header backgroundColor={colors.backgroundBlue} textColor={colors.white}>
-        <Title antonioFont={fonts.antonioFont}>the planets</Title>
-        <HamurgerMenu onClick={() => setShowMenu(!showMenu)}>
-          <HR showMenu={showMenu} />
-          <HR showMenu={showMenu} />
-          <HR showMenu={showMenu} />
-        </HamurgerMenu>
-      </Header>
-      <HorizontalRule />
-      {showMenu ? (
-        <MobileList>
-          {planetData.map((p, index) => {
-            let circleColor;
-            if (p.name === "Mercury") {
-              circleColor = planetIcons.mercuryIcon;
-            } else if (p.name === "Venus") {
-              circleColor = planetIcons.venusIcon;
-            } else if (p.name === "Earth") {
-              circleColor = planetIcons.earthIcon;
-            } else if (p.name === "Mars") {
-              circleColor = planetIcons.marsIcon;
-            } else if (p.name === "Jupiter") {
-              circleColor = planetIcons.jupiterIcon;
-            } else if (p.name === "Saturn") {
-              circleColor = planetIcons.saturnIcon;
-            } else if (p.name === "Uranus") {
-              circleColor = planetIcons.uranusIcon;
-            } else if (p.name === "Neptune") {
-              circleColor = planetIcons.naptuneIcon;
-            }
-            return (
-              <>
-                <Li key={index}>
-                  <Chapter>
-                    <Circle style={{ backgroundColor: circleColor }}></Circle>
-                    <Links to={`${p.name}`}>{p.name}</Links>
-                  </Chapter>
-                  <div>
-                    <Arrow src={arrowIcon} />
-                  </div>
-                </Li>
-                {index < 7 ? <HorizontalRule /> : ""}
-              </>
-            );
-          })}
-        </MobileList>
-      ) : (
-        ""
-      )}
-      {!showMenu && <Outlet />}
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyles />
+        <Header>
+          <Title>the planets</Title>
+          <HamburgerMenu onClick={() => setShowMenu(!showMenu)}>
+            <HR showMenu={showMenu} />
+            <HR showMenu={showMenu} />
+            <HR showMenu={showMenu} />
+          </HamburgerMenu>
+        </Header>
+        <HorizontalRule />
+        {showMenu && (
+          <MobileList>
+            {planetData.map((p, index) => {
+              const circleColor = planetColors[p.name];
+              return (
+                <div key={index}>
+                  <Li>
+                    <Chapter>
+                      <Circle style={{ backgroundColor: circleColor }}></Circle>
+                      <Links to={`${p.name}`}>{p.name}</Links>
+                    </Chapter>
+                    <div>
+                      <Arrow src={arrowIcon} />
+                    </div>
+                  </Li>
+                  {index < 7 ? <HorizontalRule /> : ""}
+                </div>
+              );
+            })}
+          </MobileList>
+        )}
+        {!showMenu && <Outlet />}
+      </>
+    </ThemeProvider>
   );
 };
 
-interface HeaderProps {
-  backgroundColor: string;
-  textColor: string;
-}
-
-interface TitleProps {
-  antonioFont: string;
-}
-
-interface HamburgerMenuProps {
+interface showMenu {
   showMenu: boolean;
 }
 
-const Header = styled.div<HeaderProps>`
-  background-color: ${(props) => props.backgroundColor};
-  color: ${(props) => props.textColor};
+const Header = styled.div`
+  background-color: ${({ theme }) => theme.styles.pallete.backgroundBlue};
+  color: ${({ theme }) => theme.styles.pallete.white};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px 17px 24px;
+  padding: 16px 24px 0 24px;
 `;
 
-const Title = styled.h1<TitleProps>`
+const Title = styled.h1`
   font-size: 28px;
   text-transform: uppercase;
-  font-family: ${(props) => props.antonioFont};
+  font-family: ${({ theme }) => theme.styles.fonts.antonioFont};
   font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -1.0499999523162842px;
+  text-align: left;
 `;
 
-const HamurgerMenu = styled.div`
+const HamburgerMenu = styled.div`
   display: flex;
   flex-direction: column;
   width: 24px;
@@ -110,10 +131,10 @@ const HamurgerMenu = styled.div`
   }
 `;
 
-const HR = styled.hr<HamburgerMenuProps>`
+const HR = styled.hr<showMenu>`
   height: 4px;
-  background: ${(props) => (props.showMenu ? "gray" : "white")};
   border: none;
+  background-color: ${(props) => (props.showMenu ? "gray" : "white")};
 `;
 
 const HorizontalRule = styled.hr`
@@ -123,16 +144,10 @@ const HorizontalRule = styled.hr`
   margin: 20px 0;
 `;
 
-const Ul = styled.ul`
-  display: none;
-  display: flex;
-  gap: 33px;
-`;
-
 const MobileList = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 44px 24px 67px 24px;
+  padding: 24px 24px 67px 24px;
 `;
 
 const Li = styled.li`
@@ -167,6 +182,7 @@ const Links = styled(Link)`
   line-height: 25px;
   text-align: center;
   letter-spacing: 1.36px;
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
 `;
 
 export default LinkLayout;
