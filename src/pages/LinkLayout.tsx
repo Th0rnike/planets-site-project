@@ -4,58 +4,11 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../components/GlobalStyles";
 import { useState } from "react";
 import arrowIcon from "../assets/icon-chevron.svg";
-import { stylesProps } from "../types";
+import { theme, planetColors } from "../theme";
 
 const LinkLayout = () => {
   const [showMenu, setShowMenu] = useState(true);
-
-  interface planetColorsProps {
-    [key: string]: string;
-  }
-
-  const theme: stylesProps = {
-    styles: {
-      pallete: {
-        white: "#FFFFFF",
-        backgroundBlue: "#070724",
-        arsenic: "#38384F",
-        romanSilver: "#838391",
-        moonstone: "#419EBB",
-        indianYellow: "#EDA249",
-        blueViolet: "#6f2ed6",
-        cinnabar: "#D14C32",
-        cgRed: "#D83A34",
-        flame: "#CD5120",
-        lightSeaGreen: "#1ec2a4",
-        ultramarineBlue: "#2d68f0",
-      },
-      planetIcons: {
-        mercuryIcon: "#DEF4FC",
-        venusIcon: "#F7CC7F",
-        earthIcon: "#545BFE",
-        marsIcon: "#FF6A45",
-        jupiterIcon: "#ECAD7A",
-        saturnIcon: "#FCCB6B",
-        uranusIcon: "#65F0D5",
-        naptuneIcon: "#497EFA",
-      },
-      fonts: {
-        spartanFont: "'League Spartan', sans-serif",
-        antonioFont: "'Antonio', sans-serif",
-      },
-    },
-  };
-
-  const planetColors: planetColorsProps = {
-    Mercury: theme.styles.planetIcons.mercuryIcon,
-    Venus: theme.styles.planetIcons.venusIcon,
-    Earth: theme.styles.planetIcons.earthIcon,
-    Mars: theme.styles.planetIcons.marsIcon,
-    Jupiter: theme.styles.planetIcons.jupiterIcon,
-    Saturn: theme.styles.planetIcons.saturnIcon,
-    Uranus: theme.styles.planetIcons.uranusIcon,
-    Neptune: theme.styles.planetIcons.naptuneIcon,
-  };
+  const [showPlanet, setShowPlanet] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -79,7 +32,12 @@ const LinkLayout = () => {
                   <Li>
                     <Chapter>
                       <Circle style={{ backgroundColor: circleColor }}></Circle>
-                      <Links to={`${p.name}`}>{p.name}</Links>
+                      <Links
+                        onClick={() => setShowPlanet(true)}
+                        to={`${p.name}`}
+                      >
+                        {p.name}
+                      </Links>
                     </Chapter>
                     <div>
                       <Arrow src={arrowIcon} />
@@ -91,7 +49,7 @@ const LinkLayout = () => {
             })}
           </MobileList>
         )}
-        {!showMenu && <Outlet />}
+        {(!showMenu || showPlanet) && <Outlet />}
       </>
     </ThemeProvider>
   );
