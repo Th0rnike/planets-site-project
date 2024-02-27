@@ -28,7 +28,7 @@ export const theme: Theme = {
       jupiterIcon: "#ECAD7A",
       saturnIcon: "#FCCB6B",
       uranusIcon: "#65F0D5",
-      naptuneIcon: "#497EFA",
+      neptuneIcon: "#497EFA",
     },
     fonts: {
       spartanFont: "'League Spartan', sans-serif",
@@ -45,5 +45,5 @@ export const planetColors: planetColorsProps = {
   Jupiter: theme.styles.planetIcons.jupiterIcon,
   Saturn: theme.styles.planetIcons.saturnIcon,
   Uranus: theme.styles.planetIcons.uranusIcon,
-  Neptune: theme.styles.planetIcons.naptuneIcon,
+  Neptune: theme.styles.planetIcons.neptuneIcon,
 };

@@ -10,7 +10,7 @@ const HomePage = () => {
       navigate("/Mercury");
     }
   }, [location.pathname, navigate]);
-  return <div>HomePage</div>;
+  return <></>;
 };
 
 export default HomePage;

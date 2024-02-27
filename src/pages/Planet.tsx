@@ -43,6 +43,7 @@ const Planet = (props: planetProps) => {
             planetInfo={planetInfo}
             planetName={planetName || ""}
             sourceIcon={sourceIcon}
+            setActiveTab={setActiveTab}
           />
 
           <DetailsComponent planetInfo={planetInfo} />
@@ -66,6 +67,10 @@ const HorizontalRule = styled.hr`
   opacity: 0.2;
   position: relative;
   top: -1px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export default Planet;

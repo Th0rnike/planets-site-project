@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import NavbarComponent from "./Navbar";
 
 interface Props {
   activeTab: string;
   planetName: string;
   imageUrl: string;
+  setActiveTab: (val: string) => void;
   planetInfo: {
     name: string;
     overview: {
@@ -23,7 +25,15 @@ interface Props {
 }
 
 export default function Information(props: Props) {
-  const { activeTab, imageUrl, planetInfo, planetName, sourceIcon } = props;
+  const {
+    activeTab,
+    imageUrl,
+    planetInfo,
+    planetName,
+    sourceIcon,
+    setActiveTab,
+  } = props;
+
   return (
     <div>
       {activeTab === "overview" && (
@@ -32,14 +42,28 @@ export default function Information(props: Props) {
             <PlanetImage src={imageUrl} alt="planet image" />
           </ImageContainer>
           <Name>{planetInfo.name}</Name>
-          <Content>{planetInfo.overview.content}</Content>
-          <SourceDiv>
-            <SrcText>
-              Source:{" "}
-              <Wikipedia href={planetInfo.overview.source}>Wikipedia</Wikipedia>
-              <img src={sourceIcon} alt="source icon" />
-            </SrcText>
-          </SourceDiv>
+
+          <Info>
+            <div>
+              <Content>{planetInfo.overview.content}</Content>
+              <SourceDiv>
+                <SrcText>
+                  Source:{" "}
+                  <Wikipedia href={planetInfo.overview.source}>
+                    Wikipedia
+                  </Wikipedia>
+                  <img src={sourceIcon} alt="source icon" />
+                </SrcText>
+              </SourceDiv>
+            </div>
+            <div>
+              <NavbarComponent
+                activeTab={activeTab}
+                planetName={planetName}
+                setActiveTab={setActiveTab}
+              />
+            </div>
+          </Info>
         </div>
       )}
       {activeTab === "structure" && (
@@ -93,10 +117,23 @@ const ImageContainer = styled.div<props>`
     if (props.image === "Jupiter") return "224px";
     if (props.image === "Saturn") return "159px";
     if (props.image === "Uranus") return "176px";
-    if (props.image === "Nepture") return "173px";
+    if (props.image === "Neptune") return "173px";
   }};
   margin: 0 auto;
   padding: 95px 0 98px 0;
+
+  @media screen and (min-width: 768px) {
+    width: ${(props) => {
+      if (props.image === "Mercury") return "184px";
+      if (props.image === "Venus") return "253px";
+      if (props.image === "Earth") return "285px";
+      if (props.image === "Mars") return "213px";
+      if (props.image === "Jupiter") return "369px";
+      if (props.image === "Saturn") return "263px";
+      if (props.image === "Uranus") return "290px";
+      if (props.image === "Neptune") return "285px";
+    }};
+  }
 `;
 
 const PlanetImage = styled.img`
@@ -109,6 +146,10 @@ const Name = styled.h1`
   font-weight: 400;
   line-height: 52px;
   text-align: center;
+`;
+
+const Info = styled.div`
+  display: flex;
 `;
 
 const Content = styled.p`

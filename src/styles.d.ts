@@ -22,7 +22,7 @@ export interface Theme {
       jupiterIcon: string;
       saturnIcon: string;
       uranusIcon: string;
-      naptuneIcon: string;
+      neptuneIcon: string;
     };
     fonts: {
       spartanFont: string;

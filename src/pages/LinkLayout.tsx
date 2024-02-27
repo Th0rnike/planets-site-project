@@ -66,6 +66,8 @@ const Header = styled.header`
   background-position: right;
 
   @media screen and (min-width: 768px) {
+    flex-direction: column;
+    padding: 32px 0 27px 0;
   }
 `;
 
@@ -77,6 +79,10 @@ const Title = styled.h1`
   line-height: 36px;
   letter-spacing: -1.0499999523162842px;
   text-align: left;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 39px;
+  }
 `;
 
 const TabletList = styled.div`
@@ -84,6 +90,9 @@ const TabletList = styled.div`
 
   @media screen and (min-width: 768px) {
     display: flex;
+    justify-content: space-between;
+    padding: 0 52px 0 51px;
+    width: 100%;
   }
 `;
 
@@ -128,6 +137,10 @@ const HorizontalRule = styled.hr`
   color: white;
   opacity: 0.2;
   margin: 20px 0;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export default LinkLayout;
