@@ -5,10 +5,15 @@ import GlobalStyles from "../components/GlobalStyles";
 import { useState } from "react";
 import arrowIcon from "../assets/icon-chevron.svg";
 import { theme, planetColors } from "../theme";
+import HomePage from "./HomePage";
 
 const LinkLayout = () => {
   const [showMenu, setShowMenu] = useState(true);
-  const [showPlanet, setShowPlanet] = useState(false);
+  // const [showPlanet, setShowPlanet] = useState(false);
+
+  const openPlanetPage = () => {
+    setShowMenu(false);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,7 +28,7 @@ const LinkLayout = () => {
           </HamburgerMenu>
         </Header>
         <HorizontalRule />
-        {showMenu && (
+        {showMenu ? (
           <MobileList>
             {planetData.map((p, index) => {
               const circleColor = planetColors[p.name];
@@ -32,10 +37,7 @@ const LinkLayout = () => {
                   <Li>
                     <Chapter>
                       <Circle style={{ backgroundColor: circleColor }}></Circle>
-                      <Links
-                        onClick={() => setShowPlanet(true)}
-                        to={`${p.name}`}
-                      >
+                      <Links onClick={openPlanetPage} to={`${p.name}`}>
                         {p.name}
                       </Links>
                     </Chapter>
@@ -48,8 +50,10 @@ const LinkLayout = () => {
               );
             })}
           </MobileList>
+        ) : (
+          <HomePage />
         )}
-        {(!showMenu || showPlanet) && <Outlet />}
+        {!showMenu && <Outlet />}
       </>
     </ThemeProvider>
   );

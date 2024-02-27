@@ -1,7 +1,16 @@
-export default function HomePage() {
-  return (
-    <div>
-      <h1>home page</h1>
-    </div>
-  );
-}
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+const HomePage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/Mercury");
+    }
+  }, [location.pathname, navigate]);
+  return <div>HomePage</div>;
+};
+
+export default HomePage;
