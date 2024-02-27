@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import background from "../assets/background-stars.svg";
 
 interface navProps {
   activeTab: string;
@@ -40,6 +41,8 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 0 24px;
+  background-image: url(${background});
+  background-repeat: no-repeat;
 `;
 
 const InfoLinks = styled(Link)`

@@ -1,15 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
-import planetData from "../data/data.json";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../components/GlobalStyles";
 import { useState } from "react";
-import arrowIcon from "../assets/icon-chevron.svg";
-import { theme, planetColors } from "../theme";
-import HomePage from "./HomePage";
+import { theme } from "../theme";
+import background from "../assets/background-stars.svg";
+import Menu from "../components/Menu";
+import planetData from "../data/data.json";
+import { Link } from "react-router-dom";
 
 const LinkLayout = () => {
   const [showMenu, setShowMenu] = useState(true);
-  // const [showPlanet, setShowPlanet] = useState(false);
 
   const openPlanetPage = () => {
     setShowMenu(false);
@@ -21,6 +20,19 @@ const LinkLayout = () => {
         <GlobalStyles />
         <Header>
           <Title>the planets</Title>
+          <TabletList>
+            {planetData.map((p, index) => {
+              return (
+                <div key={index}>
+                  <Li>
+                    <Links onClick={openPlanetPage} to={`${p.name}`}>
+                      {p.name}
+                    </Links>
+                  </Li>
+                </div>
+              );
+            })}
+          </TabletList>
           <HamburgerMenu onClick={() => setShowMenu(!showMenu)}>
             <HR showMenu={showMenu} />
             <HR showMenu={showMenu} />
@@ -28,32 +40,11 @@ const LinkLayout = () => {
           </HamburgerMenu>
         </Header>
         <HorizontalRule />
-        {showMenu ? (
-          <MobileList>
-            {planetData.map((p, index) => {
-              const circleColor = planetColors[p.name];
-              return (
-                <div key={index}>
-                  <Li>
-                    <Chapter>
-                      <Circle style={{ backgroundColor: circleColor }}></Circle>
-                      <Links onClick={openPlanetPage} to={`${p.name}`}>
-                        {p.name}
-                      </Links>
-                    </Chapter>
-                    <div>
-                      <Arrow src={arrowIcon} />
-                    </div>
-                  </Li>
-                  {index < 7 ? <HorizontalRule /> : ""}
-                </div>
-              );
-            })}
-          </MobileList>
-        ) : (
-          <HomePage />
-        )}
-        {!showMenu && <Outlet />}
+        <Menu
+          setShowMenu={setShowMenu}
+          showMenu={showMenu}
+          openPlanetPage={openPlanetPage}
+        />
       </>
     </ThemeProvider>
   );
@@ -63,13 +54,19 @@ interface showMenu {
   showMenu: boolean;
 }
 
-const Header = styled.div`
+const Header = styled.header`
   background-color: ${({ theme }) => theme.styles.pallete.backgroundBlue};
   color: ${({ theme }) => theme.styles.pallete.white};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px 0 24px;
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-position: right;
+
+  @media screen and (min-width: 768px) {
+  }
 `;
 
 const Title = styled.h1`
@@ -80,6 +77,33 @@ const Title = styled.h1`
   line-height: 36px;
   letter-spacing: -1.0499999523162842px;
   text-align: left;
+`;
+
+const TabletList = styled.div`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+const Li = styled.li`
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Links = styled(Link)`
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 1.36px;
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
 `;
 
 const HamburgerMenu = styled.div`
@@ -104,47 +128,6 @@ const HorizontalRule = styled.hr`
   color: white;
   opacity: 0.2;
   margin: 20px 0;
-`;
-
-const MobileList = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 24px 24px 67px 24px;
-`;
-
-const Li = styled.li`
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Chapter = styled.div`
-  display: flex;
-  gap: 25px;
-`;
-
-const Circle = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-`;
-
-const Arrow = styled.img`
-  width: 6px;
-  height: 8px;
-`;
-
-const Links = styled(Link)`
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 25px;
-  text-align: center;
-  letter-spacing: 1.36px;
-  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
 `;
 
 export default LinkLayout;
