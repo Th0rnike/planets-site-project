@@ -1,10 +1,10 @@
-import { stylesProps } from "./types";
+import { Theme } from "./styles";
 
 interface planetColorsProps {
   [key: string]: string;
 }
 
-export const theme: stylesProps = {
+export const theme: Theme = {
   styles: {
     pallete: {
       white: "#FFFFFF",

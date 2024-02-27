@@ -1,8 +1,12 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { planetProps } from "../types";
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import backgroundStars from "../assets/background-stars.svg";
+import NavbarComponent from "../components/Navbar";
+import { theme } from "../theme";
+import sourceIcon from "../assets/icon-source.svg";
+import Information from "../components/Information";
 
 const Planet = (props: planetProps) => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -16,10 +20,6 @@ const Planet = (props: planetProps) => {
     return null;
   }
 
-  const handleChange = (tab: string) => {
-    setActiveTab(tab);
-  };
-
   const imageName = planetInfo.name
     ? planetInfo.name[0].toLowerCase() + planetInfo.name.slice(1)
     : "";
@@ -27,77 +27,44 @@ const Planet = (props: planetProps) => {
   const imageUrl = `/src/assets/planet-${imageName}.svg`;
 
   return (
-    <div>
-      <Navbar>
-        <InfoLinks to={"#"} onClick={() => handleChange("overview")}>
-          <Tab style={{ opacity: activeTab === "overview" ? 1 : 0.5 }}>
-            overview
-            {activeTab === "overview" && <BottomLine />}
-          </Tab>
-        </InfoLinks>
-        <InfoLinks to={"#"} onClick={() => handleChange("structure")}>
-          <Tab style={{ opacity: activeTab === "structure" ? 1 : 0.5 }}>
-            structure
-            {activeTab === "structure" && <BottomLine />}
-          </Tab>
-        </InfoLinks>
-        <InfoLinks to={"#"} onClick={() => handleChange("surface")}>
-          <Tab style={{ opacity: activeTab === "surface" ? 1 : 0.5 }}>
-            structure
-            {activeTab === "surface" && <BottomLine />}
-          </Tab>
-        </InfoLinks>
-      </Navbar>
-      <HorizontalRule />
+    <ThemeProvider theme={theme}>
+      <div>
+        <NavbarComponent
+          planetName={planetName || ""}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+        <HorizontalRule />
+        <MobilePadding>
+          <Information
+            activeTab={activeTab}
+            imageUrl={imageUrl}
+            planetInfo={planetInfo}
+            planetName={planetName || ""}
+            sourceIcon={sourceIcon}
+          />
 
-      <MobilePadding>
-        {activeTab === "overview" && (
-          <div className="overview">
-            <ImageContainer>
-              <PlanetImage src={imageUrl} alt="planet image" />
-            </ImageContainer>
-            <h1>{planetInfo.name}</h1>
-            <p>{planetInfo.overview.content}</p>
-            <p>{planetInfo.overview.source}</p>
-          </div>
-        )}
-        {activeTab === "structure" && (
-          <div className="structure">
-            <PlanetImage src={imageUrl} alt="planet image" />
-            <h1>{planetInfo.name}</h1>
-            <p>{planetInfo.structure.content}</p>
-            <p>{planetInfo.structure.source}</p>
-          </div>
-        )}
-        {activeTab === "surface" && (
-          <div className="surface">
-            <PlanetImage src={imageUrl} alt="planet image" />
-            <h1>{planetInfo.name}</h1>
-            <p>{planetInfo.geology.content}</p>
-            <p>{planetInfo.geology.source}</p>
-          </div>
-        )}
-
-        <div>
-          <div>
-            <p>rotation time</p>
-            <h1>{planetInfo.rotation}</h1>
-          </div>
-          <div>
-            <p>revolution time</p>
-            <h1>{planetInfo.revolution}</h1>
-          </div>
-          <div>
-            <p>radius</p>
-            <h1>{planetInfo.radius}</h1>
-          </div>
-          <div>
-            <p>average temp. </p>
-            <h1>{planetInfo.temperature}</h1>
-          </div>
-        </div>
-      </MobilePadding>
-    </div>
+          <Details>
+            <Box>
+              <DetailName>rotation time</DetailName>
+              <DetailNumbers>{planetInfo.rotation}</DetailNumbers>
+            </Box>
+            <Box>
+              <DetailName>revolution time</DetailName>
+              <DetailNumbers>{planetInfo.revolution}</DetailNumbers>
+            </Box>
+            <Box>
+              <DetailName>radius</DetailName>
+              <DetailNumbers>{planetInfo.radius}</DetailNumbers>
+            </Box>
+            <Box>
+              <DetailName>average temp. </DetailName>
+              <DetailNumbers>{planetInfo.temperature}</DetailNumbers>
+            </Box>
+          </Details>
+        </MobilePadding>
+      </div>
+    </ThemeProvider>
   );
 };
 
@@ -106,56 +73,48 @@ const MobilePadding = styled.div`
   background-image: url(${backgroundStars});
   background-repeat: no-repeat;
   background-position: center;
-  color: wheat;
-`;
-
-const Navbar = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 24px;
-`;
-
-const InfoLinks = styled(Link)`
-  text-decoration: none;
+  color: ${({ theme }) => theme.styles.pallete.white};
 `;
 
 const HorizontalRule = styled.hr`
   height: 1px;
-  color: white;
+  color: ${({ theme }) => theme.styles.pallete.white};
   opacity: 0.2;
   position: relative;
   top: -1px;
 `;
 
-const BottomLine = styled.hr`
-  border: 4px solid ${({ theme }) => theme.styles.pallete.moonstone};
-  margin-top: 20px;
-  border-top-width: 0px;
-  border-left-width: 0px;
-  border-right-width: 0px;
+const Details = styled.div`
+  margin-top: 28px;
+  margin-bottom: 47px;
 `;
 
-const Tab = styled.h2`
-  color: white;
-  text-transform: uppercase;
+const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+  padding: 0 24px;
+`;
+
+const DetailName = styled.p`
   font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
-  font-size: 9px;
+  color: ${({ theme }) => theme.styles.pallete.white};
+  font-size: 12px;
   font-weight: 700;
-  line-height: 10px;
-  letter-spacing: 1.93px;
-  text-align: center;
+  opacity: 0.5;
+  text-transform: uppercase;
 `;
 
-const ImageContainer = styled.div`
-  width: 100%;
-  text-align: center;
-`;
-
-const PlanetImage = styled.img`
-  width: calc(100% / 2.6); /* Set the width to be 38.46% of its original size */
-  height: auto; /* Maintain the aspect ratio of the image */
-  display: block;
-  margin: 0 auto;
+const DetailNumbers = styled.h1`
+  font-family: ${({ theme }) => theme.styles.fonts.antonioFont};
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.75px;
+  text-align: right;
+  padding: 9px 0 13px;
 `;
 
 export default Planet;
