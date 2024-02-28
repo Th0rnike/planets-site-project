@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NavbarComponent from "./Navbar";
 
 interface Props {
   activeTab: string;
@@ -25,14 +24,7 @@ interface Props {
 }
 
 export default function Information(props: Props) {
-  const {
-    activeTab,
-    imageUrl,
-    planetInfo,
-    planetName,
-    sourceIcon,
-    setActiveTab,
-  } = props;
+  const { activeTab, imageUrl, planetInfo, planetName, sourceIcon } = props;
 
   return (
     <div>
@@ -55,13 +47,6 @@ export default function Information(props: Props) {
                   <img src={sourceIcon} alt="source icon" />
                 </SrcText>
               </SourceDiv>
-            </div>
-            <div>
-              <NavbarComponent
-                activeTab={activeTab}
-                planetName={planetName}
-                setActiveTab={setActiveTab}
-              />
             </div>
           </Info>
         </div>
