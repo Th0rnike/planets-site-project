@@ -95,15 +95,25 @@ const Number = styled.span`
   font-weight: 700;
   line-height: 25px;
   letter-spacing: 1.93px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+    letter-spacing: 2.57px;
+  }
 `;
 
 const Text = styled.span`
   font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
-  font-size: 13px;
+  font-size: 11px;
   font-size: 9px;
   font-weight: 700;
   line-height: 25px;
   letter-spacing: 1.93px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+    letter-spacing: 2.57px;
+  }
 `;
 
 interface Prop {

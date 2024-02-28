@@ -67,7 +67,7 @@ export default function TabContent(props: Props) {
 
   return (
     <div>
-      <div className={activeTab}>
+      <MainContent>
         <ImageContainer image={planetName || ""}>
           <PlanetImage src={imageUrl} alt="planet image" />
         </ImageContainer>
@@ -90,10 +90,14 @@ export default function TabContent(props: Props) {
             planetName={planetName}
           />
         </Current>
-      </div>
+      </MainContent>
     </div>
   );
 }
+
+const MainContent = styled.div`
+  display: flex;
+`;
 
 interface props {
   image: string;
@@ -125,6 +129,11 @@ const ImageContainer = styled.div<props>`
       if (props.image === "Neptune") return "285px";
     }};
   }
+
+  @media screen and (min-width: 1024px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const PlanetImage = styled.img`
@@ -142,6 +151,13 @@ const Name = styled.h1`
     font-size: 48px;
     line-height: 62px;
   }
+
+  @media screen and (min-width: 1024px) {
+    font-family: ${({ theme }) => theme.styles.fonts.antonioFont};
+    font-size: 80px;
+    line-height: 104px;
+    text-align: left;
+  }
 `;
 
 const Content = styled.p`
@@ -155,6 +171,15 @@ const Content = styled.p`
   @media screen and (min-width: 768px) {
     text-align: left;
     font-size: 11px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 23px 0 24px;
+    font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: left;
   }
 `;
 
@@ -173,6 +198,11 @@ const SrcText = styled.p`
   font-weight: 400;
   line-height: 25px;
   text-align: left;
+
+  @media screen and (min-width: 1024px) {
+    font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+    font-size: 14px;
+  }
 `;
 
 const Wikipedia = styled.a`
@@ -183,6 +213,11 @@ const Wikipedia = styled.a`
   font-weight: 700;
   line-height: 25px;
   text-align: left;
+
+  @media screen and (min-width: 1024px) {
+    font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+    font-size: 14px;
+  }
 `;
 
 const Current = styled.div`
@@ -190,6 +225,12 @@ const Current = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: column;
+    gap: 39px;
+    justify-content: center;
   }
 `;
 
@@ -199,5 +240,8 @@ const CurrentLeft = styled.div`
     flex-direction: column;
     align-items: flex-start;
     width: 47%;
+  }
+
+  @media screen and (min-width: 1024px) {
   }
 `;

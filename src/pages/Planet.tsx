@@ -66,6 +66,10 @@ const MobilePadding = styled.div`
   @media screen and (min-width: 768px) {
     padding: 0 40px;
   }
+
+  @media screen and (min-width: 1024px) {
+    padding: 96px 165px 0;
+  }
 `;
 
 const HorizontalRule = styled.hr`
