@@ -4,47 +4,114 @@ import styled from "styled-components";
 interface Props {
   activeTab: string;
   planetName: string;
+  handleChange: (value: string) => void;
 }
 
 export default function BottomNavbar(props: Props) {
-  const { activeTab, planetName } = props;
+  const { activeTab, planetName, handleChange } = props;
   return (
     <BottomNavContainer>
-      <LinkElement planetName={planetName} to={"#"}>
-        <Number>01</Number>
-        <Text>overview</Text>
+      <LinkElement
+        planetName={planetName}
+        onClick={() => handleChange("overview")}
+        to={"#"}
+      >
+        {activeTab === "overview" ? (
+          <TabColor planetName={planetName}>
+            <Number>01</Number>
+            <Text>overview</Text>
+          </TabColor>
+        ) : (
+          <>
+            <InsidePadding>
+              <Number>01</Number>
+              <Text>overview</Text>
+            </InsidePadding>
+          </>
+        )}
       </LinkElement>
-      <LinkElement planetName={planetName} to={"#"}>
-        <Number>02</Number>
-        <Text>structure</Text>
+
+      <LinkElement
+        planetName={planetName}
+        onClick={() => handleChange("structure")}
+        to={"#"}
+      >
+        {activeTab === "structure" ? (
+          <TabColor planetName={planetName}>
+            <Number>02</Number>
+            <Text>structure</Text>
+          </TabColor>
+        ) : (
+          <InsidePadding>
+            <Number>02</Number>
+            <Text>structure</Text>
+          </InsidePadding>
+        )}
       </LinkElement>
-      <LinkElement planetName={planetName} to={"#"}>
-        <Number>03</Number>
-        <Text>surface</Text>
+
+      <LinkElement
+        planetName={planetName}
+        onClick={() => handleChange("surface")}
+        to={"#"}
+      >
+        {activeTab === "surface" ? (
+          <TabColor planetName={planetName}>
+            <Number>03</Number>
+            <Text>surface</Text>
+          </TabColor>
+        ) : (
+          <InsidePadding>
+            <Number>03</Number>
+            <Text>surface</Text>
+          </InsidePadding>
+        )}
       </LinkElement>
     </BottomNavContainer>
   );
 }
 
 const BottomNavContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const LinkElement = styled(Link)<Prop>`
+  text-decoration: none;
+  color: ${({ theme }) => theme.styles.pallete.white};
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 281px;
+  margin-bottom: 16px;
+`;
+
+const Number = styled.span`
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+  padding-right: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 1.93px;
+`;
+
+const Text = styled.span`
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+  font-size: 13px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 1.93px;
 `;
 
 interface Prop {
   planetName: string;
 }
 
-const LinkElement = styled(Link)<Prop>`
-  text-decoration: none;
-  color: ${({ theme }) => theme.styles.pallete.white};
-  text-transform: uppercase;
+const TabColor = styled.div<Prop>`
   padding: 7px 0 8px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  width: 281px;
-  margin-bottom: 16px;
   background-color: ${(props) => {
     const { planetName } = props;
     if (planetName === "Mercury") return props.theme.styles.pallete.moonstone;
@@ -60,21 +127,6 @@ const LinkElement = styled(Link)<Prop>`
   }};
 `;
 
-const Number = styled.span`
-  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 25px;
-  letter-spacing: 1.93px;
-  text-align: left;
-  padding-right: 8px;
-`;
-
-const Text = styled.span`
-  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 25px;
-  letter-spacing: 1.93px;
-  text-align: left;
+const InsidePadding = styled.div`
+  padding: 7px 0 8px 20px;
 `;

@@ -56,6 +56,13 @@ export default function DetailsComponent(props: Props) {
 const Details = styled.div`
   margin-top: 28px;
   margin-bottom: 47px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 11px;
+    margin-top: 37px;
+    margin-bottom: 36px;
+  }
 `;
 
 const Box = styled.div`
@@ -65,6 +72,16 @@ const Box = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 8px;
   padding: 0 24px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px 0 19px 15px;
+    width: 100%;
+    margin-bottom: 0;
+  }
 `;
 
 const DetailName = styled.p`
@@ -74,6 +91,15 @@ const DetailName = styled.p`
   font-weight: 700;
   opacity: 0.5;
   text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.73px;
+    text-align: left;
+  }
 `;
 
 const DetailNumbers = styled.h1`
@@ -84,4 +110,14 @@ const DetailNumbers = styled.h1`
   letter-spacing: 0.75px;
   text-align: right;
   padding: 9px 0 13px;
+
+  @media screen and (min-width: 768px) {
+    font-family: ${({ theme }) => theme.styles.fonts.antonioFont};
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: -0.9px;
+    text-align: left;
+    padding: 6px 0 0 0;
+  }
 `;

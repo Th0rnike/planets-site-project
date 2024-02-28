@@ -113,6 +113,11 @@ const Links = styled(Link)`
   text-align: center;
   letter-spacing: 1.36px;
   font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
+
+  @media screen and (min-width: 768px) {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
 `;
 
 const HamburgerMenu = styled.div`

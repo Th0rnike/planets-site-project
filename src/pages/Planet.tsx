@@ -27,17 +27,22 @@ const Planet = (props: planetProps) => {
 
   const imageUrl = `/src/assets/planet-${imageName}.svg`;
 
+  const handleChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div>
         <TopNavbar
           planetName={planetName || ""}
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          handleChange={handleChange}
         />
         <HorizontalRule />
         <MobilePadding>
           <Information
+            handleChange={handleChange}
             activeTab={activeTab}
             imageUrl={imageUrl}
             planetInfo={planetInfo}
@@ -57,6 +62,10 @@ const MobilePadding = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   color: ${({ theme }) => theme.styles.pallete.white};
+
+  @media screen and (min-width: 768px) {
+    padding: 0 40px;
+  }
 `;
 
 const HorizontalRule = styled.hr`

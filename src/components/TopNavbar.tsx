@@ -4,15 +4,13 @@ import background from "../assets/background-stars.svg";
 
 interface navProps {
   activeTab: string;
-  setActiveTab: (value: string) => void;
   planetName: string;
+  handleChange: (value: string) => void;
 }
 
 export default function TopNavbar(props: navProps) {
-  const { activeTab, setActiveTab, planetName } = props;
-  const handleChange = (tab: string) => {
-    setActiveTab(tab);
-  };
+  const { activeTab, planetName, handleChange } = props;
+
   return (
     <>
       <MobileNavbar>

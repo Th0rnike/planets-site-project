@@ -6,6 +6,7 @@ interface Props {
   planetName: string;
   imageUrl: string;
   sourceIcon: string;
+  handleChange: (val: string) => void;
   planetInfo: {
     name: string;
     overview: {
@@ -27,7 +28,14 @@ export default function TabContent(props: Props) {
   const OVERVIEW = "overview";
   const STRUCTURE = "structure";
   const SURFACE = "surface";
-  const { activeTab, imageUrl, planetInfo, planetName, sourceIcon } = props;
+  const {
+    activeTab,
+    imageUrl,
+    planetInfo,
+    planetName,
+    sourceIcon,
+    handleChange,
+  } = props;
 
   const getTabContent = () => {
     switch (activeTab) {
@@ -76,7 +84,11 @@ export default function TabContent(props: Props) {
             </SourceDiv>
           </CurrentLeft>
 
-          <BottomNavbar activeTab={activeTab} planetName={planetName} />
+          <BottomNavbar
+            handleChange={handleChange}
+            activeTab={activeTab}
+            planetName={planetName}
+          />
         </Current>
       </div>
     </div>
@@ -125,6 +137,11 @@ const Name = styled.h1`
   font-weight: 400;
   line-height: 52px;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 48px;
+    line-height: 62px;
+  }
 `;
 
 const Content = styled.p`
@@ -137,6 +154,7 @@ const Content = styled.p`
 
   @media screen and (min-width: 768px) {
     text-align: left;
+    font-size: 11px;
   }
 `;
 
@@ -150,7 +168,8 @@ const SrcText = styled.p`
   font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
   color: ${({ theme }) => theme.styles.pallete.white};
   opacity: 0.5;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 25px;
   font-weight: 400;
   line-height: 25px;
   text-align: left;
@@ -158,22 +177,27 @@ const SrcText = styled.p`
 
 const Wikipedia = styled.a`
   color: ${({ theme }) => theme.styles.pallete.white};
+  font-family: ${({ theme }) => theme.styles.fonts.spartanFont};
   opacity: 0.5;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 25px;
   text-align: left;
 `;
 
 const Current = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const CurrentLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 47%;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 47%;
+  }
 `;

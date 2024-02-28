@@ -4,6 +4,7 @@ interface Props {
   activeTab: string;
   planetName: string;
   imageUrl: string;
+  handleChange: (val: string) => void;
   planetInfo: {
     name: string;
     overview: {
@@ -23,11 +24,19 @@ interface Props {
 }
 
 export default function Information(props: Props) {
-  const { activeTab, imageUrl, planetInfo, planetName, sourceIcon } = props;
+  const {
+    activeTab,
+    imageUrl,
+    planetInfo,
+    planetName,
+    sourceIcon,
+    handleChange,
+  } = props;
 
   return (
     <div>
       <TabContent
+        handleChange={handleChange}
         activeTab={activeTab}
         imageUrl={imageUrl}
         planetInfo={planetInfo}
