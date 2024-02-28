@@ -3,11 +3,11 @@ import { planetProps } from "../types";
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import backgroundStars from "../assets/background-stars.svg";
-import NavbarComponent from "../components/Navbar";
 import { theme } from "../theme";
 import sourceIcon from "../assets/icon-source.svg";
 import Information from "../components/Information";
 import DetailsComponent from "../components/Details";
+import TopNavbar from "../components/TopNavbar";
 
 const Planet = (props: planetProps) => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -30,7 +30,7 @@ const Planet = (props: planetProps) => {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <NavbarComponent
+        <TopNavbar
           planetName={planetName || ""}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -43,9 +43,7 @@ const Planet = (props: planetProps) => {
             planetInfo={planetInfo}
             planetName={planetName || ""}
             sourceIcon={sourceIcon}
-            setActiveTab={setActiveTab}
           />
-
           <DetailsComponent planetInfo={planetInfo} />
         </MobilePadding>
       </div>

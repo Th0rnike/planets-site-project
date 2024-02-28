@@ -8,7 +8,7 @@ interface navProps {
   planetName: string;
 }
 
-export default function NavbarComponent(props: navProps) {
+export default function TopNavbar(props: navProps) {
   const { activeTab, setActiveTab, planetName } = props;
   const handleChange = (tab: string) => {
     setActiveTab(tab);
@@ -32,7 +32,7 @@ export default function NavbarComponent(props: navProps) {
         </InfoLinks>
         <InfoLinks to={"#"} onClick={() => handleChange("surface")}>
           <Tab style={{ opacity: activeTab === "surface" ? 1 : 0.5 }}>
-            structure
+            surface
             {activeTab === "surface" && <BottomLine planetName={planetName} />}
           </Tab>
         </InfoLinks>
@@ -49,7 +49,7 @@ const MobileNavbar = styled.nav`
   background-repeat: no-repeat;
 
   @media screen and (min-width: 768px) {
-
+    display: none;
   }
 `;
 
@@ -68,21 +68,17 @@ const BottomLine = styled.hr<prop>`
   border: 4px solid
     ${(props) => {
       const { planetName } = props;
-      if (planetName === "Mercury")
-        return props.theme.styles.planetIcons.mercuryIcon;
+      if (planetName === "Mercury") return props.theme.styles.pallete.moonstone;
       if (planetName === "Venus")
-        return props.theme.styles.planetIcons.venusIcon;
-      if (planetName === "Earth")
-        return props.theme.styles.planetIcons.earthIcon;
-      if (planetName === "Mars") return props.theme.styles.planetIcons.marsIcon;
-      if (planetName === "Jupiter")
-        return props.theme.styles.planetIcons.jupiterIcon;
-      if (planetName === "Saturn")
-        return props.theme.styles.planetIcons.saturnIcon;
+        return props.theme.styles.pallete.indianYellow;
+      if (planetName === "Earth") return props.theme.styles.pallete.blueViolet;
+      if (planetName === "Mars") return props.theme.styles.pallete.cinnabar;
+      if (planetName === "Jupiter") return props.theme.styles.pallete.cgRed;
+      if (planetName === "Saturn") return props.theme.styles.pallete.flame;
       if (planetName === "Uranus")
-        return props.theme.styles.planetIcons.uranusIcon;
+        return props.theme.styles.pallete.lightSeaGreen;
       if (planetName === "Neptune")
-        return props.theme.styles.planetIcons.neptuneIcon;
+        return props.theme.styles.pallete.ultramarineBlue;
     }};
   margin-top: 20px;
   border-top-width: 0px;

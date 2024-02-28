@@ -4,7 +4,6 @@ interface Props {
   activeTab: string;
   planetName: string;
   imageUrl: string;
-  setActiveTab: (val: string) => void;
   planetInfo: {
     name: string;
     overview: {

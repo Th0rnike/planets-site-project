@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BottomNavbar from "./BottomNavbar";
 
 interface Props {
   activeTab: string;
@@ -25,7 +26,7 @@ interface Props {
 export default function TabContent(props: Props) {
   const OVERVIEW = "overview";
   const STRUCTURE = "structure";
-  const SURFACE = "geology";
+  const SURFACE = "surface";
   const { activeTab, imageUrl, planetInfo, planetName, sourceIcon } = props;
 
   const getTabContent = () => {
@@ -62,16 +63,21 @@ export default function TabContent(props: Props) {
         <ImageContainer image={planetName || ""}>
           <PlanetImage src={imageUrl} alt="planet image" />
         </ImageContainer>
-        <Name>{planetName}</Name>
-        <div>
-          <Content>{tabContent.content}</Content>
-          <SourceDiv>
-            <SrcText>
-              Source: <Wikipedia href={tabContent.source}>Wikipedia</Wikipedia>
-              <img src={sourceIcon} alt="source icon" />
-            </SrcText>
-          </SourceDiv>
-        </div>
+        <Current>
+          <CurrentLeft>
+            <Name>{planetName}</Name>
+            <Content>{tabContent.content}</Content>
+            <SourceDiv>
+              <SrcText>
+                Source:{" "}
+                <Wikipedia href={tabContent.source}>Wikipedia</Wikipedia>
+                <img src={sourceIcon} alt="source icon" />
+              </SrcText>
+            </SourceDiv>
+          </CurrentLeft>
+
+          <BottomNavbar activeTab={activeTab} planetName={planetName} />
+        </Current>
       </div>
     </div>
   );
@@ -128,6 +134,10 @@ const Content = styled.p`
   line-height: 22px;
   text-align: center;
   margin: 16px 0 32px;
+
+  @media screen and (min-width: 768px) {
+    text-align: left;
+  }
 `;
 
 const SourceDiv = styled.div`
@@ -153,4 +163,17 @@ const Wikipedia = styled.a`
   font-weight: 700;
   line-height: 25px;
   text-align: left;
+`;
+
+const Current = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CurrentLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 47%;
 `;
