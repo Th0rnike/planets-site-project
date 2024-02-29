@@ -34,7 +34,7 @@ export default function Information(props: Props) {
   } = props;
 
   return (
-    <div>
+    <div className="looking">
       <TabContent
         handleChange={handleChange}
         activeTab={activeTab}

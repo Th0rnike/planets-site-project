@@ -65,7 +65,6 @@ const Details = styled.div`
   @media screen and (min-width: 1024px) {
     display: flex;
     gap: 30px;
-    /* width: 100%; */
   }
 `;
 

@@ -66,32 +66,28 @@ export default function TabContent(props: Props) {
   const tabContent = getTabContent();
 
   return (
-    <div>
-      <MainContent>
-        <ImageContainer image={planetName || ""}>
-          <PlanetImage src={imageUrl} alt="planet image" />
-        </ImageContainer>
-        <Current>
-          <CurrentLeft>
-            <Name>{planetName}</Name>
-            <Content>{tabContent.content}</Content>
-            <SourceDiv>
-              <SrcText>
-                Source:{" "}
-                <Wikipedia href={tabContent.source}>Wikipedia</Wikipedia>
-                <img src={sourceIcon} alt="source icon" />
-              </SrcText>
-            </SourceDiv>
-          </CurrentLeft>
-
-          <BottomNavbar
-            handleChange={handleChange}
-            activeTab={activeTab}
-            planetName={planetName}
-          />
-        </Current>
-      </MainContent>
-    </div>
+    <MainContent>
+      <ImageContainer image={planetName || ""}>
+        <PlanetImage src={imageUrl} alt="planet image" />
+      </ImageContainer>
+      <Current>
+        <CurrentLeft>
+          <Name>{planetName}</Name>
+          <Content>{tabContent.content}</Content>
+          <SourceDiv>
+            <SrcText>
+              Source: <Wikipedia href={tabContent.source}>Wikipedia</Wikipedia>
+              <img src={sourceIcon} alt="source icon" />
+            </SrcText>
+          </SourceDiv>
+        </CurrentLeft>
+        <BottomNavbar
+          handleChange={handleChange}
+          activeTab={activeTab}
+          planetName={planetName}
+        />
+      </Current>
+    </MainContent>
   );
 }
 
@@ -249,7 +245,6 @@ const CurrentLeft = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* width: 47%; */
   }
 
   @media screen and (min-width: 1024px) {
