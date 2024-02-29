@@ -98,7 +98,9 @@ export default function TabContent(props: Props) {
 const MainContent = styled.div`
   @media screen and (min-width: 1024px) {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 154px;
   }
 `;
 
@@ -134,9 +136,10 @@ const ImageContainer = styled.div<props>`
   }
 
   @media screen and (min-width: 1024px) {
-    width: 100%;
+    width: 53%;
     text-align: center;
     padding: 0;
+    margin: 0;
   }
 `;
 
@@ -183,8 +186,8 @@ const Content = styled.p`
     font-size: 14px;
     font-weight: 400;
     line-height: 25px;
-    height: 150px;
-    width: 350px;
+    max-height: 150px;
+    max-width: 350px;
   }
 `;
 
@@ -230,6 +233,7 @@ const Current = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 69px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -245,7 +249,7 @@ const CurrentLeft = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 47%;
+    /* width: 47%; */
   }
 
   @media screen and (min-width: 1024px) {

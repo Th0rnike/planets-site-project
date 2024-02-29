@@ -100,7 +100,7 @@ const Title = styled.h1`
     padding-bottom: 39px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     padding-bottom: 0;
   }
 `;
@@ -142,6 +142,8 @@ const Links = styled(Link)`
   @media screen and (min-width: 768px) {
     font-size: 11px;
     letter-spacing: 1px;
+  }
+  @media screen and (min-width: 768px) {
   }
 `;
 

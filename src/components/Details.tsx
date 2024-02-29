@@ -30,26 +30,24 @@ interface Props {
 export default function DetailsComponent(props: Props) {
   const { planetInfo } = props;
   return (
-    <div>
-      <Details>
-        <Box>
-          <DetailName>rotation time</DetailName>
-          <DetailNumbers>{planetInfo.rotation}</DetailNumbers>
-        </Box>
-        <Box>
-          <DetailName>revolution time</DetailName>
-          <DetailNumbers>{planetInfo.revolution}</DetailNumbers>
-        </Box>
-        <Box>
-          <DetailName>radius</DetailName>
-          <DetailNumbers>{planetInfo.radius}</DetailNumbers>
-        </Box>
-        <Box>
-          <DetailName>average temp. </DetailName>
-          <DetailNumbers>{planetInfo.temperature}</DetailNumbers>
-        </Box>
-      </Details>
-    </div>
+    <Details>
+      <Box>
+        <DetailName>rotation time</DetailName>
+        <DetailNumbers>{planetInfo.rotation}</DetailNumbers>
+      </Box>
+      <Box>
+        <DetailName>revolution time</DetailName>
+        <DetailNumbers>{planetInfo.revolution}</DetailNumbers>
+      </Box>
+      <Box>
+        <DetailName>radius</DetailName>
+        <DetailNumbers>{planetInfo.radius}</DetailNumbers>
+      </Box>
+      <Box>
+        <DetailName>average temp. </DetailName>
+        <DetailNumbers>{planetInfo.temperature}</DetailNumbers>
+      </Box>
+    </Details>
   );
 }
 
@@ -67,7 +65,7 @@ const Details = styled.div`
   @media screen and (min-width: 1024px) {
     display: flex;
     gap: 30px;
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 
@@ -80,7 +78,6 @@ const Box = styled.div`
   padding: 0 24px;
 
   @media screen and (min-width: 768px) {
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -90,7 +87,6 @@ const Box = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    width: 255px;
   }
 `;
 
@@ -122,9 +118,6 @@ const DetailNumbers = styled.h1`
   padding: 9px 0 13px;
 
   @media screen and (min-width: 768px) {
-    font-family: ${({ theme }) => theme.styles.fonts.antonioFont};
-    font-size: 24px;
-    font-weight: 400;
     line-height: 31px;
     letter-spacing: -0.9px;
     text-align: left;
