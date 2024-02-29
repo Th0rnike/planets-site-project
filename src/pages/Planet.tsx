@@ -49,6 +49,7 @@ const Planet = (props: planetProps) => {
             planetName={planetName || ""}
             sourceIcon={sourceIcon}
           />
+
           <DetailsComponent planetInfo={planetInfo} />
         </MobilePadding>
       </div>

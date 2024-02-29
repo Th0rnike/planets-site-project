@@ -24,13 +24,11 @@ const LinkLayout = () => {
           <TabletList>
             {planetData.map((p, index) => {
               return (
-                <div key={index}>
-                  <Li>
-                    <Links onClick={openPlanetPage} to={`${p.name}`}>
-                      {p.name}
-                    </Links>
-                  </Li>
-                </div>
+                <Li key={index}>
+                  <Links onClick={openPlanetPage} to={`${p.name}`}>
+                    {p.name}
+                  </Links>
+                </Li>
               );
             })}
           </TabletList>
@@ -142,8 +140,6 @@ const Links = styled(Link)`
   @media screen and (min-width: 768px) {
     font-size: 11px;
     letter-spacing: 1px;
-  }
-  @media screen and (min-width: 768px) {
   }
 `;
 
