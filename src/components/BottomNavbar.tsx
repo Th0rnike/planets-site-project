@@ -77,6 +77,10 @@ const BottomNavContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media screen and (min-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 const LinkElement = styled(Link)<Prop>`
@@ -84,8 +88,12 @@ const LinkElement = styled(Link)<Prop>`
   color: ${({ theme }) => theme.styles.pallete.white};
   text-transform: uppercase;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 281px;
+  /* width: 281px; */
   margin-bottom: 16px;
+
+  @media screen and (min-width: 1024px) {
+    /* width: 100%; */
+  }
 `;
 
 const Number = styled.span`

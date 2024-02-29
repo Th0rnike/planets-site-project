@@ -63,6 +63,12 @@ const Details = styled.div`
     margin-top: 37px;
     margin-bottom: 36px;
   }
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+  }
 `;
 
 const Box = styled.div`
@@ -81,6 +87,10 @@ const Box = styled.div`
     padding: 16px 0 19px 15px;
     width: 100%;
     margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 255px;
   }
 `;
 
