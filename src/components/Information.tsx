@@ -19,6 +19,11 @@ interface Props {
       content: string;
       source: string;
     };
+    images: {
+      planet: string;
+      internal: string;
+      geology: string;
+    };
   };
   sourceIcon: string;
 }

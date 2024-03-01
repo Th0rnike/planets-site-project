@@ -13,6 +13,7 @@ export interface Theme {
       flame: string;
       lightSeaGreen: string;
       ultramarineBlue: string;
+      hoverColor: string;
     };
     planetIcons: {
       mercuryIcon: string;

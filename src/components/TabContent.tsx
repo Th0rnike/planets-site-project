@@ -21,6 +21,11 @@ interface Props {
       content: string;
       source: string;
     };
+    images: {
+      planet: string;
+      internal: string;
+      geology: string;
+    };
   };
 }
 
@@ -28,14 +33,8 @@ export default function TabContent(props: Props) {
   const OVERVIEW = "overview";
   const STRUCTURE = "structure";
   const SURFACE = "surface";
-  const {
-    activeTab,
-    imageUrl,
-    planetInfo,
-    planetName,
-    sourceIcon,
-    handleChange,
-  } = props;
+
+  const { activeTab, planetInfo, planetName, sourceIcon, handleChange } = props;
 
   const getTabContent = () => {
     switch (activeTab) {
@@ -43,21 +42,27 @@ export default function TabContent(props: Props) {
         return {
           content: planetInfo.overview.content,
           source: planetInfo.overview.source,
+          image: "/src" + planetInfo.images.planet.split(".")[1] + ".svg",
         };
       case STRUCTURE:
         return {
           content: planetInfo.structure.content,
           source: planetInfo.structure.source,
+          image: "/src" + planetInfo.images.internal.split(".")[1] + ".svg",
         };
       case SURFACE:
         return {
           content: planetInfo.geology.content,
           source: planetInfo.geology.source,
+          image: "/src" + planetInfo.images.planet.split(".")[1] + ".svg",
+          secondImage:
+            "/src" + planetInfo.images.geology.split(".")[1] + ".png",
         };
       default: {
         return {
           content: "",
           source: "",
+          image: "",
         };
       }
     }
@@ -68,7 +73,8 @@ export default function TabContent(props: Props) {
   return (
     <MainContent>
       <ImageContainer image={planetName || ""}>
-        <PlanetImage src={imageUrl} alt="planet image" />
+        <PlanetImage src={tabContent.image} alt="planet image" />
+        {activeTab === SURFACE && <Geology src={tabContent.secondImage} />}
       </ImageContainer>
       <Current>
         <CurrentLeft>
@@ -116,7 +122,8 @@ const ImageContainer = styled.div<props>`
     if (props.image === "Neptune") return "173px";
   }};
   margin: 0 auto;
-  padding: 95px 0 98px 0;
+  padding: 95px 0 0 0;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
     width: ${(props) => {
@@ -129,6 +136,7 @@ const ImageContainer = styled.div<props>`
       if (props.image === "Uranus") return "290px";
       if (props.image === "Neptune") return "285px";
     }};
+    text-align: center;
   }
 
   @media screen and (min-width: 1024px) {
@@ -136,6 +144,10 @@ const ImageContainer = styled.div<props>`
     text-align: center;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -230,6 +242,7 @@ const Current = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 69px;
+    margin-top: 50px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -248,5 +261,21 @@ const CurrentLeft = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
+  }
+`;
+
+const Geology = styled.img`
+  width: 35%;
+  position: relative;
+  top: -50px;
+  @media screen and (min-width: 768px) {
+    top: -76px;
+  }
+  @media screen and (min-width: 1024px) {
+    display: inline;
+    position: relative;
+    max-width: 133px;
+    width: 25%;
+    top: -110px;
   }
 `;

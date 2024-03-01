@@ -91,10 +91,8 @@ const LinkElement = styled(Link)<Prop>`
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 16px;
 
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1024px) {
+  &:hover {
+    background-color: ${({ theme }) => theme.styles.pallete.hoverColor};
   }
 `;
 

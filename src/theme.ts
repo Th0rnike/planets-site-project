@@ -19,6 +19,7 @@ export const theme: Theme = {
       flame: "#CD5120",
       lightSeaGreen: "#1ec2a4",
       ultramarineBlue: "#2d68f0",
+      hoverColor: "#d8d8d833",
     },
     planetIcons: {
       mercuryIcon: "#DEF4FC",

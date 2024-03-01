@@ -10,6 +10,7 @@ import iconHamburger from "../assets/icon-hamburger.svg";
 
 const LinkLayout = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [hoveredPlanet, setHoveredPlanet] = useState<string | null>(null);
 
   const openPlanetPage = () => {
     setShowMenu(false);
@@ -25,7 +26,48 @@ const LinkLayout = () => {
             {planetData.map((p, index) => {
               return (
                 <Li key={index}>
-                  <Links onClick={openPlanetPage} to={`${p.name}`}>
+                  <TopLine
+                    mycolor={
+                      hoveredPlanet === p.name && p.name === "Mercury"
+                        ? theme.styles.pallete.moonstone
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Venus"
+                        ? theme.styles.pallete.indianYellow
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Earth"
+                        ? theme.styles.pallete.blueViolet
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Mars"
+                        ? theme.styles.pallete.cinnabar
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Jupiter"
+                        ? theme.styles.pallete.cgRed
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Saturn"
+                        ? theme.styles.pallete.flame
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Uranus"
+                        ? theme.styles.pallete.lightSeaGreen
+                        : "transparent" &&
+                          hoveredPlanet === p.name &&
+                          p.name === "Neptune"
+                        ? theme.styles.pallete.ultramarineBlue
+                        : "transparent"
+                    }
+                  />
+                  <Links
+                    // onMouseEnter={handleMouseEnter}
+                    onMouseEnter={() => setHoveredPlanet(p.name)}
+                    onMouseLeave={() => setHoveredPlanet(null)}
+                    onClick={openPlanetPage}
+                    to={`${p.name}`}
+                  >
                     {p.name}
                   </Links>
                 </Li>
@@ -121,12 +163,13 @@ const TabletList = styled.div`
 
 const Li = styled.li`
   list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;
 
-const Links = styled(Link)`
+interface LinksProps {
+  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+const Links = styled(Link)<LinksProps>`
   text-decoration: none;
   color: white;
   text-transform: uppercase;
@@ -140,6 +183,19 @@ const Links = styled(Link)`
   @media screen and (min-width: 768px) {
     font-size: 11px;
     letter-spacing: 1px;
+  }
+`;
+
+interface HoverProps {
+  mycolor: string;
+}
+
+const TopLine = styled.hr<HoverProps>`
+  @media screen and (min-width: 1024px) {
+    border: 4px solid ${(props) => props.mycolor};
+    width: 100%;
+    position: relative;
+    bottom: 75%;
   }
 `;
 
