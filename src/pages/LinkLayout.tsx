@@ -191,7 +191,11 @@ interface HoverProps {
 }
 
 const TopLine = styled.hr<HoverProps>`
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
   @media screen and (min-width: 1024px) {
+    display: block;
     border: 4px solid ${(props) => props.mycolor};
     width: 100%;
     position: relative;
