@@ -80,6 +80,9 @@ yarn dev
 2. Click on individual planets to delve deeper into their unique characteristics.
 3. Enjoy an immersive learning experience about our solar system!
 
+## Code hierarchy
+- code components have the next hierarchy: LinkLayout -> HomePage -> Planet -> TopNavbar | Information -> TabContent -> BottomNavbar
+
 ## Credits
 
 I would like to express our gratitude to the following tools, platforms, and resources for their support during the development of the Planets Site project:
