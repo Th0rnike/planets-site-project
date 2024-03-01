@@ -11,22 +11,24 @@ import TopNavbar from "../components/TopNavbar";
 
 const Planet = (props: planetProps) => {
   const [activeTab, setActiveTab] = useState("overview");
-
   const { planetData } = props;
   const { planetName } = useParams();
 
+  // Find planet information based on the planetName parameter
   const planetInfo = planetData.find((p) => p.name === planetName);
 
   if (!planetInfo) {
-    return null;
+    return null; // Or handle the case when planetInfo is not found
   }
 
+  // Generate image URL based on planet name
   const imageName = planetInfo.name
     ? planetInfo.name[0].toLowerCase() + planetInfo.name.slice(1)
     : "";
 
   const imageUrl = `/src/assets/planet-${imageName}.svg`;
 
+  // Handle tab change
   const handleChange = (tab: string) => {
     setActiveTab(tab);
   };

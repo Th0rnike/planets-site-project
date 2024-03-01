@@ -29,6 +29,16 @@ export interface Theme {
       spartanFont: string;
       antonioFont: string;
     };
+    specialPallete: {
+      mercury: string;
+      venus: string;
+      earth: string;
+      mars: string;
+      jupiter: string;
+      saturn: string;
+      uranus: string;
+      neptune: string;
+    };
   };
 }
 

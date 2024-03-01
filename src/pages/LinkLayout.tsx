@@ -28,36 +28,8 @@ const LinkLayout = () => {
                 <Li key={index}>
                   <TopLine
                     mycolor={
-                      hoveredPlanet === p.name && p.name === "Mercury"
-                        ? theme.styles.pallete.moonstone
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Venus"
-                        ? theme.styles.pallete.indianYellow
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Earth"
-                        ? theme.styles.pallete.blueViolet
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Mars"
-                        ? theme.styles.pallete.cinnabar
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Jupiter"
-                        ? theme.styles.pallete.cgRed
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Saturn"
-                        ? theme.styles.pallete.flame
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Uranus"
-                        ? theme.styles.pallete.lightSeaGreen
-                        : "transparent" &&
-                          hoveredPlanet === p.name &&
-                          p.name === "Neptune"
-                        ? theme.styles.pallete.ultramarineBlue
+                      hoveredPlanet === p.name
+                        ? theme.styles.specialPallete[p.name.toLowerCase()]
                         : "transparent"
                     }
                   />
@@ -165,11 +137,7 @@ const Li = styled.li`
   list-style: none;
 `;
 
-interface LinksProps {
-  onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => void;
-}
-
-const Links = styled(Link)<LinksProps>`
+const Links = styled(Link)`
   text-decoration: none;
   color: white;
   text-transform: uppercase;

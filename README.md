@@ -4,13 +4,9 @@ Welcome to the Planets Fact Site! Explore intriguing details about the planets i
 
 ## Description
 
-This project is an educational platform designed to provide users with comprehensive information about the planets in our solar system. Each planet is meticulously detailed, allowing users to learn about their sizes, distances from the sun, orbital periods, and other fascinating facts. From the scorching heat of Mercury to the icy expanse of Neptune, embark on a journey through space right from your browser.
+This project is an educational platform designed to provide users with comprehensive information about the planets in our solar system. Each planet is meticulously detailed, allowing users to learn about their sizes, distances from the sun, orbital periods, and other fascinating facts. From the scorching heat of Mercury to the icy expanse of Neptune, embark on a journey through space right from your browser. The app works on all resolutions and is written on the mobile-first approach
 
-### Before and After Submit Images
-
-![Screenshot 2024-02-08 at 22-05-30 Credit Card](https://github.com/Th0rnike/two-cards/assets/116254117/bb368100-9481-41b2-8d8a-4bf86f020c3d)
-
-![Screenshot 2024-02-08 at 22-05-35 Credit Card](https://github.com/Th0rnike/two-cards/assets/116254117/b0b35ddc-ded3-45f1-950d-d9691c75e4b2)
+### Images on Mobile, Tablet and Desktop Sizes
 
 ## Features
 
@@ -26,6 +22,7 @@ Responsive design: Access the site seamlessly across a variety of devices for un
 - JavaScript
 - TypeScript
 - React
+- Styled Components
 
 ## Installation
 

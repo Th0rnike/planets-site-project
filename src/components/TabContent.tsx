@@ -259,9 +259,6 @@ const CurrentLeft = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
-
-  @media screen and (min-width: 1024px) {
-  }
 `;
 
 const Geology = styled.img`
